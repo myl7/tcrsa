@@ -19,7 +19,7 @@ func randInt(bitLen int) (randNum *big.Int, err error) {
 		return
 	}
 	byteLen := bitLen / 8
-	if bitLen % 8 != 0 {
+	if bitLen%8 != 0 {
 		byteLen++
 	}
 	rawRand := make([]byte, byteLen)
@@ -58,10 +58,9 @@ func generateSafePrimes(bitLen int, randSource io.Reader) (*big.Int, *big.Int, e
 		}
 		// p = 2q + 1
 		p.Lsh(q, 1)
-		p.SetBit(p,0,1)
+		p.SetBit(p, 0, 1)
 		if p.ProbablyPrime(c) {
 			return p, q, nil
 		}
 	}
 }
-

@@ -5,7 +5,8 @@ import (
 	"crypto/rsa"
 	"crypto/sha256"
 	"fmt"
-	"github.com/niclabs/tcrsa"
+
+	"github.com/myl7/tcrsa"
 )
 
 const exampleK = 3

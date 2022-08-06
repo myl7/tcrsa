@@ -6,9 +6,10 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
-	"github.com/niclabs/tcrsa"
 	"math/big"
 	"testing"
+
+	"github.com/myl7/tcrsa"
 )
 
 const keyTestK = 3

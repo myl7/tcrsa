@@ -3,8 +3,9 @@ package tcrsa_test
 import (
 	"crypto"
 	"crypto/sha256"
-	"github.com/niclabs/tcrsa"
 	"testing"
+
+	"github.com/myl7/tcrsa"
 )
 
 const pkcs1EncodingTestMessage = "Hello World"
