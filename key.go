@@ -190,16 +190,16 @@ func NewKey(bitSize int, k, l uint16, args *KeyMetaArgs) (shares KeyShareList, m
 	}
 
 	// Calculate Key Shares for each i TC participant.
-	for i = 1; i <= meta.L; i++ {
-		keyShare := shares[i-1]
-		keyShare.Id = i
-		si := poly.eval(big.NewInt(int64(i)))
+	for index, keyShare := range shares {
+		id := uint16(index + 1)
+		keyShare.Id = id
+		si := poly.eval(big.NewInt(int64(id)))
 		si.Mul(si, deltaInv)
 		si.Mod(si, m)
 		keyShare.Si = si.Bytes()
 		vki.Exp(vkv, si, n)
 
-		meta.VerificationKey.I[i-1] = vki.Bytes()
+		meta.VerificationKey.I[index] = vki.Bytes()
 	}
 	return
 }
