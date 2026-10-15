@@ -35,13 +35,13 @@ func pkcs1v15HashInfo(hash crypto.Hash, inLen int) (hashLen int, prefix []byte, 
 	if hash == 0 {
 		return inLen, nil, nil
 	}
-	hashLen = hash.Size()
-	if inLen != hashLen {
-		return 0, nil, errors.New("crypto/rsa: input must be hashed message")
-	}
 	prefix, ok := hashPrefixes[hash]
 	if !ok {
 		return 0, nil, errors.New("crypto/rsa: unsupported hash function")
+	}
+	hashLen = hash.Size()
+	if inLen != hashLen {
+		return 0, nil, errors.New("crypto/rsa: input must be hashed message")
 	}
 	return
 }
