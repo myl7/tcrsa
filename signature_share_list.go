@@ -12,13 +12,13 @@ type SigShareList []*SigShare
 // The number of signatures should be at least the number of threshold defined at key creation.
 // It returns the RSA signature generated, or an error if the process fails.
 func (sigShareList SigShareList) Join(document []byte, info *KeyMeta) (signature Signature, err error) {
+	if info == nil {
+		err = fmt.Errorf("key metainfo is nil")
+		return
+	}
 	signature = make([]byte, info.PublicKey.Size())
 	if document == nil {
 		err = fmt.Errorf("document is nil")
-		return
-	}
-	if info == nil {
-		err = fmt.Errorf("key metainfo is nil")
 		return
 	}
 
